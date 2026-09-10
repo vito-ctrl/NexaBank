@@ -23,11 +23,9 @@ public class Account{
     public double getBalance(){return this.balance;}
     public HashSet<Transaction> getTransactionHistory(){return this.transactionHistory;}
 
-    // public void deposit(double amount){
-    //     try{
-    //         if(amount < 0)
-    //             throw new IllegalArgumentException("deposit can't be negative");
-    //         this.balance += amount;
-    //     }
-    // }
+    public void deposit(double amount){
+        if(amount <= 0)
+            throw new IllegalArgumentException("deposit can't be negative");
+        this.balance += amount;
+    }
 }
