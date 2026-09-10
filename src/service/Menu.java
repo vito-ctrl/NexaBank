@@ -7,8 +7,8 @@ import model.Manager;
 import java.util.Scanner;
 
 class Auth {
-    public static void signIn(){
-        Scanner sc = new Scanner(System.in);
+    public static void signIn(Scanner sc){
+        // Scanner sc = new Scanner(System.in);
     
         System.out.println("------ Nexa Bank -----");
         System.out.println("1 . manager");
@@ -27,6 +27,7 @@ class Auth {
             System.out.println("chakatkhowr ><");
             return;
         }
+        sc.nextLine();
 
         String firstname;
         String lastname;
@@ -42,11 +43,17 @@ class Auth {
         System.out.print("Enter ur email name : ");
         email = sc.nextLine();
         
-        System.out.print("Enter ur password name : ");
-        password = sc.nextLine();
-        
-        System.out.print("comfirm ur password : ");
-        String comfirmPassword = sc.nextLine();
+        while(true){
+            System.out.print("Enter ur password name : ");
+            password = sc.nextLine();
+            
+            System.out.print("comfirm ur password : ");
+            String comfirmPassword = sc.nextLine();
+            if(password.equals(comfirmPassword))
+                break;
+            System.out.println("password not matched");
+        }
+
         if(choise == 1){
             Manager m1 = new Manager(firstname, lastname, email, password, "45678");
             m1.displayProfile();
@@ -85,7 +92,7 @@ public class Menu {
 
             switch(sChoise){
                 case 1:
-                    Auth.signIn();
+                    Auth.signIn(sc);
                     break;
                 case 2:
                     Auth.signUp();
