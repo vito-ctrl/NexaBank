@@ -15,7 +15,7 @@ public class Account{
         this.accountType = accountType;
         this.transactionHistory = new HashSet<>();
         if(balance < 0)
-            throw new IllegalArgumentException("the initial balance can't be negative");
+            throw new IllegalArgumentException("the initial balance can't bje negative");
         else
             this.balance = balance;
     }
@@ -25,12 +25,13 @@ public class Account{
     public double getBalance(){return this.balance;}
     public HashSet<Transaction> getTransactionHistory(){return this.transactionHistory;}
 
-    public void deposit(double amount, String sourceAccount){
+    public void deposit(double amount){
         if(amount <= 0)
             throw new IllegalArgumentException("deposit can't be negative");
         this.balance += amount;
 
-        // UUID transactionId = UUID.randomUUID().toString();
-        // Transaction transaction = new Transaction(transactionId, "Deposit", amount, sourceAccount, accountNumber);
+        String transactionId = UUID.randomUUID().toString();
+        Transaction transaction = new Transaction(transactionId, "Deposit", amount, null, accountNumber);
+        transactionHistory.add(transaction);
     }
 }
