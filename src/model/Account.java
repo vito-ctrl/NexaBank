@@ -1,6 +1,8 @@
 package model;
 
+import model.Transaction;   
 import java.util.HashSet;
+import java.util.UUID;
 
 public class Account{
     private String accountNumber;
@@ -23,9 +25,12 @@ public class Account{
     public double getBalance(){return this.balance;}
     public HashSet<Transaction> getTransactionHistory(){return this.transactionHistory;}
 
-    public void deposit(double amount){
+    public void deposit(double amount, String sourceAccount){
         if(amount <= 0)
             throw new IllegalArgumentException("deposit can't be negative");
         this.balance += amount;
+
+        // UUID transactionId = UUID.randomUUID().toString();
+        // Transaction transaction = new Transaction(transactionId, "Deposit", amount, sourceAccount, accountNumber);
     }
 }

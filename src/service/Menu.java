@@ -3,6 +3,7 @@ package service;
 import model.Client;
 import model.Person;
 import model.Manager;
+// import model.Account;
 
 import java.util.Scanner;
 
@@ -42,7 +43,7 @@ class Auth {
         
         System.out.print("Enter ur email name : ");
         email = sc.nextLine();
-        
+         
         while(true){
             System.out.print("Enter ur password name : ");
             password = sc.nextLine();
@@ -53,7 +54,6 @@ class Auth {
                 break;
             System.out.println("password not matched");
         }
-
         if(choise == 1){
             Manager m1 = new Manager(firstname, lastname, email, password, "45678");
             m1.displayProfile();
@@ -79,7 +79,6 @@ class Auth {
 public class Menu {
     public static void menu(){
         Scanner sc = new Scanner(System.in);
-            
         System.out.println("------ Nexa Bank -----");
 
         int sChoise;
