@@ -32,7 +32,7 @@ public class Account{
 
         String transactionId = UUID.randomUUID().toString();
         Transaction transaction = new Transaction(transactionId, "Deposit", amount, null, accountNumber);
-        transactionHistory.add(transaction);
+        this.transactionHistory.add(transaction);
     }
 
     public void withdraw(double amount){
@@ -44,7 +44,7 @@ public class Account{
 
         String transactionId = UUID.randomUUID().toString();
         Transaction transaction = new Transaction(transactionId, "Withdraw", amount, accountNumber, null);
-        transactionHistory.add(transaction);
+        this.transactionHistory.add(transaction);
     }
 
     public void transfer(double amount, Account destinationAccount){
@@ -54,8 +54,13 @@ public class Account{
             throw new IllegalArgumentException("can't withdraw more than the balence");
         this.balance -= amount;
         destinationAccount.balance += amount;
+
         String transactionId = UUID.randomUUID().toString();
-        Transaction transaction = new Transaction(transactionId, "transfer", amount, this.accountNumber, destinationAccount); 
-        transactionHistory.add(transaction);
+        Transaction transaction = new Transaction(transactionId, "transfer", amount, this.accountNumber, destinationAccount.getAccountNumber()); 
+        
+        this.transactionHistory.add(transaction);
+        destinationAccount.transactionHistory.add(transaction);
     }
+
+
 }
