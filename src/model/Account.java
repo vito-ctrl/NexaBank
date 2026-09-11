@@ -27,11 +27,23 @@ public class Account{
 
     public void deposit(double amount){
         if(amount <= 0)
-            throw new IllegalArgumentException("deposit can't be negative");
+            throw new IllegalArgumentException("deposit can't be negative or equal 0");
         this.balance += amount;
 
         String transactionId = UUID.randomUUID().toString();
         Transaction transaction = new Transaction(transactionId, "Deposit", amount, null, accountNumber);
+        transactionHistory.add(transaction);
+    }
+
+    public void withdraw(double amount){
+        if(amount <= 0)
+            throw new IllegalArgumentException("deposit can't be negative or equal 0");
+        else if(this.balance < amount)
+            throw new IllegalArgumentException("can't withdraw more than the balence");
+        this.balance -= amount;
+
+        String transactionId = UUID.randomUUID().toString();
+        Transaction transaction = new Transaction(transactionId, "Withdraw", amount, accountNumber, null);
         transactionHistory.add(transaction);
     }
 }
