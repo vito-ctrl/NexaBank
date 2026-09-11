@@ -46,4 +46,16 @@ public class Account{
         Transaction transaction = new Transaction(transactionId, "Withdraw", amount, accountNumber, null);
         transactionHistory.add(transaction);
     }
+
+    public void transfer(double amount, Account destinationAccount){
+        if(amount <= 0)
+            throw new IllegalArgumentException("deposit can't be negative or equal 0");
+        else if(this.balance < amount)
+            throw new IllegalArgumentException("can't withdraw more than the balence");
+        this.balance -= amount;
+        destinationAccount.balance += amount;
+        String transactionId = UUID.randomUUID().toString();
+        Transaction transaction = new Transaction(transactionId, "transfer", amount, this.accountNumber, destinationAccount); 
+        transactionHistory.add(transaction);
+    }
 }
