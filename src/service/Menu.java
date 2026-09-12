@@ -9,7 +9,6 @@ import java.util.Scanner;
 
 class Auth {
     public static void signIn(Scanner sc){
-        // Scanner sc = new Scanner(System.in);
     
         System.out.println("------ Nexa Bank -----");
         System.out.println("1 . manager");
