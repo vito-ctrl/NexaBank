@@ -3,6 +3,7 @@ package model;
 import model.Transaction;   
 import java.util.HashSet;
 import java.util.UUID;
+import exception.InsufficientBalanceException;
 
 public class Account{
     private String accountNumber;
@@ -39,7 +40,7 @@ public class Account{
         if(amount <= 0)
             throw new IllegalArgumentException("deposit can't be negative or equal 0");
         else if(this.balance < amount)
-            throw new IllegalArgumentException("can't withdraw more than the balence");
+            throw new InsufficientBalanceException("can't withdraw more than the balence");
         this.balance -= amount;
 
         String transactionId = UUID.randomUUID().toString();
@@ -51,7 +52,7 @@ public class Account{
         if(amount <= 0)
             throw new IllegalArgumentException("deposit can't be negative or equal 0");
         else if(this.balance < amount)
-            throw new IllegalArgumentException("can't withdraw more than the balence");
+            throw new InsufficientBalanceException("can't withdraw more than the balence");
         this.balance -= amount;
         destinationAccount.balance += amount;
 
